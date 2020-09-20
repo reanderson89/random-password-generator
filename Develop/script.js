@@ -17,7 +17,7 @@ function writePassword() {
   }
   var passLower = confirm("Would you like 'lower case' letters?")
   if (passLower === true) {
-    console.log(String.fromCharCode(Math.floor(Math.random()*26) + 97));
+    // return String.fromCharCode(Math.floor(Math.random()*26) + 97);
     console.log("yes Lowers");
   } else {
     console.log("no Lowers");
@@ -35,6 +35,8 @@ function writePassword() {
   passwordText.value = password;
 
 }
+
+// console.log(writePassword())
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
