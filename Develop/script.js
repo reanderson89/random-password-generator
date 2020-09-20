@@ -3,6 +3,32 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
+  var passLength = prompt("Please enter your preferred length from 8-128.")
+  if (passLength >=8 && passLength <=128) {
+    console.log("yes");
+  } else {
+    console.log("no");
+  }
+  var passUpper = confirm("Would you like 'UPPER CASE' letters?")
+  if (passUpper === true) {
+    console.log("yes Uppers");
+  } else {
+    console.log("no Uppers");
+  }
+  var passLower = confirm("Would you like 'lower case' letters?")
+  if (passLower === true) {
+    console.log(String.fromCharCode(Math.floor(Math.random()*26) + 97));
+    console.log("yes Lowers");
+  } else {
+    console.log("no Lowers");
+  }
+  var passSpecial = confirm("Would you like 'Special Characters'?")
+  if (passSpecial === true) {
+    console.log("yes Special");
+  } else {
+    console.log("no Special");
+  }
+  
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
