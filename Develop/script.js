@@ -3,32 +3,6 @@ var generateBtn = document.querySelector("#generate");
 
 // Write password to the #password input
 function writePassword() {
-  var passLength = prompt("Please enter your preferred length from 8-128.")
-  if (passLength >=8 && passLength <=128) {
-    console.log("yes");
-  } else {
-    console.log("no");
-  }
-  var passUpper = confirm("Would you like 'UPPER CASE' letters?")
-  if (passUpper === true) {
-    console.log("yes Uppers");
-  } else {
-    console.log("no Uppers");
-  }
-  var passLower = confirm("Would you like 'lower case' letters?")
-  if (passLower === true) {
-    // return String.fromCharCode(Math.floor(Math.random()*26) + 97);
-    console.log("yes Lowers");
-  } else {
-    console.log("no Lowers");
-  }
-  var passSpecial = confirm("Would you like 'Special Characters'?")
-  if (passSpecial === true) {
-    console.log("yes Special");
-  } else {
-    console.log("no Special");
-  }
-  
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
 
@@ -36,7 +10,24 @@ function writePassword() {
 
 }
 
-// console.log(writePassword())
+function generatePassword() {
+
+  var length = prompt("Choose a password length between 8 and 128 characters.");
+  if (length < 8 || length > 128) {
+    alert("Length must be between 8 and 128.");
+  } else {
+  var numbers = confirm("Would you like the password to have numbers?");
+
+  var upperCase = confirm("Would you like the password to have UPPER CASE letters?");
+
+  var lowerCase = confirm("Would you like the password to have lower case letters?");
+
+  var special = confirm("Would you like the password to have special characters?");
+  }
+  if (!numbers && !upperCase && !lowerCase && !special) {
+    alert("You must select something!");
+  }
+}
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
