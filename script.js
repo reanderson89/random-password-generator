@@ -14,7 +14,12 @@ generateBtn.addEventListener("click", writePassword);
 function generatePassword() {
   var generatedPassword = "";
   var length = prompt("Choose a password length between 8 and 128 characters.");
-  if (length < 8 || length > 128) {
+    
+  if (isNaN(length)) {
+    alert("Please enter a number between 8 and 128");
+    return generatePassword();
+  }
+  else if (length < 8 || length > 128) {
     alert("Length must be between 8 and 128.");
   } else {
     var numbers = confirm("Would you like the password to have numbers?");
@@ -33,6 +38,7 @@ function generatePassword() {
   }
   if (!numbers && !upperCase && !lowerCase && !special) {
     alert("You must select something!");
+    return generatePassword();
   } else {
     generatedPassword = createPassword(numbers, upperCase, lowerCase, special, length);
   } 
@@ -54,7 +60,6 @@ function createPassword (numbers, upperCase, lowerCase, special, length) {
   var randomLower = function() {
     return String.fromCharCode(Math.floor(Math.random()*26) + 97);
   }
-
   // Special
   var randomSpecial = function() {
     return String.fromCharCode(Math.floor(Math.random()*4) + 35);
