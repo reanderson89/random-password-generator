@@ -1,3 +1,4 @@
+
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
@@ -7,30 +8,104 @@ function writePassword() {
   var passwordText = document.querySelector("#password");
 
   passwordText.value = password;
-
 }
+generateBtn.addEventListener("click", writePassword);
 
 function generatePassword() {
-
+  var generatedPassword = "";
   var length = prompt("Choose a password length between 8 and 128 characters.");
   if (length < 8 || length > 128) {
     alert("Length must be between 8 and 128.");
   } else {
-  var numbers = confirm("Would you like the password to have numbers?");
+    var numbers = confirm("Would you like the password to have numbers?");
 
-  var upperCase = confirm("Would you like the password to have UPPER CASE letters?");
+    var upperCase = confirm(
+      "Would you like the password to have UPPER CASE letters?"
+    );
 
-  var lowerCase = confirm("Would you like the password to have lower case letters?");
+    var lowerCase = confirm(
+      "Would you like the password to have lower case letters?"
+    );
 
-  var special = confirm("Would you like the password to have special characters?");
+    var special = confirm(
+      "Would you like the password to have special characters?"
+    );
   }
   if (!numbers && !upperCase && !lowerCase && !special) {
     alert("You must select something!");
+  } else {
+    generatedPassword = createPassword(numbers, upperCase, lowerCase, special, length);
+  } 
+  return generatedPassword;
+}
+
+
+function createPassword (numbers, upperCase, lowerCase, special, length) {
+  var functionArray = [];
+  //  Numbers
+  var randomNumbers = function() {
+    return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
+    }
+   // Upper Case
+ var randomUpper = function() {
+  return String.fromCharCode(Math.floor(Math.random()*26) + 65);
   }
+  // Lower Case
+  var randomLower = function() {
+    return String.fromCharCode(Math.floor(Math.random()*26) + 97);
+  }
+
+  // Special
+  var randomSpecial = function() {
+    return String.fromCharCode(Math.floor(Math.random()*4) + 35);
+  }
+
+  var functionArray = [];
+
+  var minimumCount = 0;
+  var guaranteedNumber = "";
+  var guaranteedUpper = "";
+  var guaranteedLower = "";
+  var guaranteedSpecial = "";
+
+  if (numbers === true) {
+    functionArray.push(randomNumbers);
+    guaranteedNumber = randomNumbers();
+    minimumCount++;
+  }
+  if (upperCase === true) {
+    functionArray.push(randomUpper);
+    guaranteedUpper = randomUpper();
+    minimumCount++;
+  }
+  if (lowerCase === true) {
+    functionArray.push(randomLower);
+    guaranteedLower = randomLower();
+    minimumCount++;
+  }
+  if (special === true) {
+    functionArray.push(randomSpecial);
+    guaranteedSpecial = randomSpecial();
+    minimumCount++;
+  }
+
+  var randomPasswordGenerated = "";
+  
+
+  for (var i = 0; i < (parseInt(length) - minimumCount); i++) {
+    var choicesPicked = functionArray[Math.floor(Math.random() * functionArray.length)]();
+    randomPasswordGenerated += choicesPicked;
+  }
+
+  randomPasswordGenerated += guaranteedNumber;
+  randomPasswordGenerated += guaranteedSpecial;
+  randomPasswordGenerated += guaranteedUpper;
+  randomPasswordGenerated += guaranteedLower;
+
+  return randomPasswordGenerated;
 }
 
 // Add event listener to generate button
-generateBtn.addEventListener("click", writePassword);
 
 
 // GIVEN I need a new, secure password
@@ -48,3 +123,22 @@ generateBtn.addEventListener("click", writePassword);
 // THEN a password is generated that matches the selected criteria
 // WHEN the password is generated
 // THEN the password is either displayed in an alert or written to the page
+
+//  // Upper Case
+//  function() {
+//   return String.fromCharCode(Math.floor(Math.random()*26) + 65);
+// },
+// // Lower Case
+// function() {
+//   return String.fromCharCode(Math.floor(Math.random()*26) + 97);
+// },
+// // Numbers
+// function() {
+//   return String.fromCharCode(Math.floor(Math.random()*10) + 48);
+// },
+// // Special
+// function() {
+//   return String.fromCharCode(Math.floor(Math.random()*4) + 35);
+// }
+
+// Math.floor(Math.random() * 1)
