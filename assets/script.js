@@ -1,4 +1,3 @@
-
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 
@@ -17,7 +16,7 @@ function promptUser() {
   var generatedPassword = "";
   // Sets length of password
   var length = prompt("Choose a password length between 8 and 128 characters.");
-    // If anything but a number is given the function will start over after alerting the user
+  // If anything but a number is given the function will start over after alerting the user
   if (isNaN(length)) {
     alert("Please enter a number between 8 and 128");
     return promptUser();
@@ -30,15 +29,15 @@ function promptUser() {
   } else {
     // Asks the suer if they want numbers
     var numbers = confirm("Would you like the password to have numbers?");
-    // asks the user if they would like upper case letters 
+    // asks the user if they would like upper case letters
     var upperCase = confirm(
       "Would you like the password to have UPPER CASE letters?"
     );
-      // asks the user if they would like lower case letters
+    // asks the user if they would like lower case letters
     var lowerCase = confirm(
       "Would you like the password to have lower case letters?"
     );
-      // asks the user if they would like special characters
+    // asks the user if they would like special characters
     var special = confirm(
       "Would you like the password to have special characters?"
     );
@@ -49,32 +48,38 @@ function promptUser() {
     return promptUser();
   } else {
     // sets the generated password equal to the following functions and passes through the following variables to access
-    generatedPassword = createPassword(numbers, upperCase, lowerCase, special, length);
-  } 
+    generatedPassword = createPassword(
+      numbers,
+      upperCase,
+      lowerCase,
+      special,
+      length
+    );
+  }
   return generatedPassword;
 }
 
 // This function will generate our random password based off of the users input from promptUser function
-function createPassword (numbers, upperCase, lowerCase, special, length) {
+function createPassword(numbers, upperCase, lowerCase, special, length) {
   // creates an array that we will use to store the random character generating functions when called upon by the user
   var functionArray = [];
   //  Generates a random number from 0-9
-  var randomNumbers = function() {
+  var randomNumbers = function () {
     return String.fromCharCode(Math.floor(Math.random() * 10) + 48);
-    }
-   // Generates a random upper case letter from A-Z
- var randomUpper = function() {
-  return String.fromCharCode(Math.floor(Math.random()*26) + 65);
-  }
+  };
+  // Generates a random upper case letter from A-Z
+  var randomUpper = function () {
+    return String.fromCharCode(Math.floor(Math.random() * 26) + 65);
+  };
   // Generates a random lower case letter from a-z
-  var randomLower = function() {
-    return String.fromCharCode(Math.floor(Math.random()*26) + 97);
-  }
+  var randomLower = function () {
+    return String.fromCharCode(Math.floor(Math.random() * 26) + 97);
+  };
   // Generates a random special characters
-  var randomSpecial = function() {
-    return String.fromCharCode(Math.floor(Math.random()*15) + 32);
-  }
-  
+  var randomSpecial = function () {
+    return String.fromCharCode(Math.floor(Math.random() * 15) + 32);
+  };
+
   // Set variable to log numbers to ensure we don't later generate more characters then requested from the password
   var minimumCount = 0;
   // each variable creates a blank string that can have characters applied to them as needed
@@ -112,10 +117,12 @@ function createPassword (numbers, upperCase, lowerCase, special, length) {
   }
   // creates a variable as an empty string that can later be returned with the users finished password
   var randomPasswordGenerated = "";
-  
+
   // for loop that runs as many times as the length of the password that was selected minus the minimumCount. The minimum count is subtracted because each time a number,upper case, lower case, special character was selected a random character from the selected option was added to the final password as a guarantee that the password would always have the options requested. Each pass of the loop generates a random character from the selected options and adds it to the randomPasswordGenerated variable.
-  for (var i = 0; i < (parseInt(length) - minimumCount); i++) {
-    var choicesPicked = functionArray[Math.floor(Math.random() * functionArray.length)](); 
+  for (var i = 0; i < parseInt(length) - minimumCount; i++) {
+    var choicesPicked = functionArray[
+      Math.floor(Math.random() * functionArray.length)
+    ]();
     randomPasswordGenerated += choicesPicked;
   }
   // whatever characters are inside each variable will be added to the randomPasswordGenerated variable. There will only be characters in them if they had been chosen by the user.
@@ -126,8 +133,4 @@ function createPassword (numbers, upperCase, lowerCase, special, length) {
 
   // returns the users randomly generated password
   return randomPasswordGenerated;
-  
 }
-
-
-

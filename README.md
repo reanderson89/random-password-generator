@@ -1,7 +1,7 @@
 # **Random-Password-Generator**
 
 ## **Live Link**
- 
+https://reanderson89.github.io/random-password-generator/
 
 ## **Contributors**
 @reanderson89
