@@ -56,6 +56,7 @@ function promptUser() {
 
 // This function will generate our random password based off of the users input from promptUser function
 function createPassword (numbers, upperCase, lowerCase, special, length) {
+  // creates an array that we will use to store the random character generating functions when called upon by the user
   var functionArray = [];
   //  Generates a random number from 0-9
   var randomNumbers = function() {
@@ -69,12 +70,11 @@ function createPassword (numbers, upperCase, lowerCase, special, length) {
   var randomLower = function() {
     return String.fromCharCode(Math.floor(Math.random()*26) + 97);
   }
-  // Generates 1 of 4 different special characters
+  // Generates a random special characters
   var randomSpecial = function() {
     return String.fromCharCode(Math.floor(Math.random()*15) + 32);
   }
-  // creates an array of functions to be accessed later on
-  var functionArray = [];
+  
   // Set variable to log numbers to ensure we don't later generate more characters then requested from the password
   var minimumCount = 0;
   // each variable creates a blank string that can have characters applied to them as needed
@@ -92,16 +92,19 @@ function createPassword (numbers, upperCase, lowerCase, special, length) {
     // adds 1 to minimumCount
     minimumCount++;
   }
+  // if the user chooses to have upper case letters
   if (upperCase === true) {
     functionArray.push(randomUpper);
     guaranteedUpper = randomUpper();
     minimumCount++;
   }
+  // if the use chooses to have lower case letters
   if (lowerCase === true) {
     functionArray.push(randomLower);
     guaranteedLower = randomLower();
     minimumCount++;
   }
+  // if the user chooses to have special characters
   if (special === true) {
     functionArray.push(randomSpecial);
     guaranteedSpecial = randomSpecial();
@@ -115,7 +118,7 @@ function createPassword (numbers, upperCase, lowerCase, special, length) {
     var choicesPicked = functionArray[Math.floor(Math.random() * functionArray.length)](); 
     randomPasswordGenerated += choicesPicked;
   }
-  // whatever characters are inside each variable will be added to the users password. There will only be characters in them if they had been chosen by the user.
+  // whatever characters are inside each variable will be added to the randomPasswordGenerated variable. There will only be characters in them if they had been chosen by the user.
   randomPasswordGenerated += guaranteedNumber;
   randomPasswordGenerated += guaranteedSpecial;
   randomPasswordGenerated += guaranteedUpper;
