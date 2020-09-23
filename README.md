@@ -15,7 +15,7 @@ This webpage has been designed to generate a random password based on the users 
 * HTML, CSS, Javascript
 
 ## **Demo**
- ![demo gif](assets/gifs/passGenVid15fps.gif)
+ ![demo gif](assets/gifs/PassGenGif.gif)
 
 ## **Contact**
 
